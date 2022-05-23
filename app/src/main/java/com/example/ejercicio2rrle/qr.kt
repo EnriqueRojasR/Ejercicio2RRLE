@@ -70,39 +70,47 @@ class qr : AppCompatActivity(),ZXingScannerView. ResultHandler{
 //Filtro para la VCard
         }else if (scanResult.startsWith("BEGIN:VCARD")){
 
-            //val tokens = scanResult.split("\n")
-
-
-
-
-            /*val vc = adapter.getItem(position).getVcard().toString();
-            Intent i = new Intent();
-            i.setAction(android.content.Intent.ACTION_VIEW);
-            i.setDataAndType(Uri.parse(adapter.getItem(position).getResult().toString()),"text/x-vcard");
-            startActivity(i);
-
-             */
 
             val vCObtenido : List<String> = scanResult.split("\n")
-            val nombre: List<String> = vCObtenido[3].split("FN:")
-            val org: List<String> = vCObtenido[4].split("ORG:")
-            val title: List<String> = vCObtenido[5].split("TITLE:")
-            val  adr: List<String> = vCObtenido[6].split("ADR:")
-            val telWork: List<String> = vCObtenido[7].split("TEL;WORK;VOICE:")
-            val telCel: List<String> = vCObtenido[8].split("TEL;CEL:")
-            val email: List<String> = vCObtenido[10].split("EMAIL;WORK;INTERNET:")
+            val nombre: List<String> = vCObtenido[2].split(":")
+            val fonena: List<String> = vCObtenido[3].split(":")
+            val org: List<String> = vCObtenido[4].split(":")
+            val title: List<String> = vCObtenido[5].split(":")
+            val  adr: List<String> = vCObtenido[6].split(":")
+            val telWork: List<String> = vCObtenido[7].split(":")
+            val telCel: List<String> = vCObtenido[8].split(":")
+            val fax: List<String> = vCObtenido[9].split(":")
+            val email: List<String> = vCObtenido[10].split(":")
+            val url1: List<String> = vCObtenido[11].split(":")
 
+            val vcardIntent = Intent(ContactsContract.Intents.Insert.ACTION)
+            vcardIntent.setType(ContactsContract.RawContacts.CONTENT_TYPE)
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.NAME,nombre[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.PHONETIC_NAME,fonena[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, email[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.PHONE,telCel[1])
+                .putExtra(ContactsContract.Intents.Insert.PHONE_TYPE,
+                    ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+            //vcardIntent.putExtra(ContactsContract.Intents.Insert.PHONE, telWork[1])
+              //  .putExtra(ContactsContract.Intents.Insert.PHONE_TYPE,
+                //    ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
+           // vcardIntent.putExtra(ContactsContract.Intents.Insert.PHONE, fax[1])
+             //   .putExtra(ContactsContract.Intents.Insert.PHONE_TYPE,
+               ///     ContactsContract.CommonDataKinds.Phone.TYPE_FAX_HOME)
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,title[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.COMPANY,org[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.POSTAL,adr[1])
+            vcardIntent.putExtra(ContactsContract.Intents.Insert.EXTRA_ACCOUNT,url1[1])
+                .putExtra(ContactsContract.Intents.Insert.EXTRA_ACCOUNT,
+                ContactsContract.CommonDataKinds.Website.URL)
 
-
-            val vCardIntent = Intent(Intent.ACTION_INSERT_OR_EDIT)
-            vCardIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
-            vCardIntent.putExtra(ContactsContract.Intents.Insert.NAME,nombre[0])
-            vCardIntent.putExtra(ContactsContract.Intents.Insert.COMPANY,org[0])
-            vCardIntent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,title[0])
-            vCardIntent.putExtra(ContactsContract.Intents.Insert.PHONE,telCel[0] )
-            vCardIntent.putExtra(ContactsContract.Intents.Insert.EMAIL,email[0])
-            startActivity(vCardIntent)
+            startActivity(vcardIntent)
             finish()
+
+
+
+
+
 
 
 
