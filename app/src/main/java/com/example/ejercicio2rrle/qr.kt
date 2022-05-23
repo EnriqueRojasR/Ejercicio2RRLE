@@ -70,7 +70,7 @@ class qr : AppCompatActivity(),ZXingScannerView. ResultHandler{
 //Filtro para la VCard
         }else if (scanResult.startsWith("BEGIN:VCARD")){
 
-            val tokens = scanResult.split("\n")
+            //val tokens = scanResult.split("\n")
 
 
 
@@ -83,7 +83,7 @@ class qr : AppCompatActivity(),ZXingScannerView. ResultHandler{
 
              */
 
-            val vCObtenido : List<String> = scanResult.split("n/")
+            val vCObtenido : List<String> = scanResult.split("\n")
             val nombre: List<String> = vCObtenido[3].split("FN:")
             val org: List<String> = vCObtenido[4].split("ORG:")
             val title: List<String> = vCObtenido[5].split("TITLE:")
@@ -94,14 +94,15 @@ class qr : AppCompatActivity(),ZXingScannerView. ResultHandler{
 
 
 
-            var vCardIntent = Intent(Intent.ACTION_INSERT_OR_EDIT)
+            val vCardIntent = Intent(Intent.ACTION_INSERT_OR_EDIT)
             vCardIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
             vCardIntent.putExtra(ContactsContract.Intents.Insert.NAME,nombre[0])
             vCardIntent.putExtra(ContactsContract.Intents.Insert.COMPANY,org[0])
             vCardIntent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,title[0])
             vCardIntent.putExtra(ContactsContract.Intents.Insert.PHONE,telCel[0] )
             vCardIntent.putExtra(ContactsContract.Intents.Insert.EMAIL,email[0])
-
+            startActivity(vCardIntent)
+            finish()
 
 
 
