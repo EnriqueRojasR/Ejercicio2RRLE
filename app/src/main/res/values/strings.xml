@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Ejercicio2RRLE</string>
+    <string name="Autor">Rojas Ruiz Luis Enrique</string>
+    <string name="Titulo">Lector de QR</string>
+    <string name="TituloE">Error</string>
+    <string name="MensajeQRinvalido">El código QR no es válido para la aplicación</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="TituloPermi">Permiso Requerido</string>
+    <string name="MensajePermisos">Se necesita acceder a la cámara para leer los códigos QR</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="MensajeNOPermiso">El permiso de la cámara no se ha concedido"</string>
+    <string name="URL">https:</string>
+    <string name="CORREO">MATMSG:</string>
+    <string name="smain1">MATMSG:TO:</string>
+    <string name="smail2">SUB:</string>
+    <string name="smail3">BODY:</string>
+    <string name="SMS">SMSTO:</string>
+    <string name="MensajeIndi">Presiona el icono para escanear el QR</string>
 </resources>
