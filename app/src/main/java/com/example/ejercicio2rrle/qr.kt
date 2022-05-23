@@ -68,7 +68,7 @@ class qr : AppCompatActivity(),ZXingScannerView. ResultHandler{
 
 
 //Filtro para la VCard
-        }else if (scanResult.startsWith("BEGIN:")){
+        }else if (scanResult.startsWith("BEGIN:VCARD")){
 
             val tokens = scanResult.split("\n")
 
